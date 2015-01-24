@@ -8,7 +8,7 @@ Stable tag: 1.0.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Plugin to import, cache and display a JSON-Feed. Display is done with worpress-markups.
+Plugin to import, cache and display a JSON-Feed. Display is done with wordpress-markups.
 
 
 == Description ==
