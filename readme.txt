@@ -15,7 +15,6 @@ Plugin to import, cache and display a JSON-Feed. Display is done with worpress-m
 
 Plugin to import, cache and display a JSON-Feed. Display is done with wordpress-markups.
 
-
 == Installation ==
 
 For detailed installation instructions, please read the [standard installation procedure for WordPress plugins](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
@@ -35,7 +34,25 @@ This plugin gives a wp-shortcode for use in a page/blog to import, cache and dis
 
 = How can I make sure the plugin works? =
 
-Create a sample-page and use the wp-shortcode. An example is given in the plugin-configpage.
+Create a sample-page and use the wp-shortcode. An example is given in the plugin-configpage and below...
+
+= Available Syntax for Wordpress-Pages and -Blogentries =
+[jsoncontentimporter
+  url="http://...json"
+  numberofdisplayeditems="number: how many items of level 1 should be displayed? display all: leave empty"
+  basenode="starting point of datasets, tha base-node in the JSON-Feed where the data is?"
+]
+Any HTML-Code plus "basenode"-datafields wrapped in "{}"
+{subloop:"basenode_subloop":"number of subloop-datasets to be displayed"}
+Any HTML-Code plus "basenode_subloop"-datafields wrapped in "{}"
+{/subloop}
+[/jsoncontentimporter] 
+
+There are some special add-ons for datafields:
+"{street:ifNotEmptyAdd:,}": If datafield "street" is not empty, add "," after datafield-value. allowed chars are: " a-zA-Z0-9,;-:"
+"{locationname:urlencode}": Insert the php-urlencoded value of the datafield "locationname". Needed when building URLs.
+"{locationname:unique}": only display the first instance of a datafield. Needed when JSON delivers data more than once.
+
 
 == Changelog ==
 
