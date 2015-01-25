@@ -4,7 +4,7 @@ add_action('admin_menu', 'jci_create_menu');
 function jci_create_menu() {
 
 	//create new top-level menu
-	add_menu_page('JSON Content Importer', 'JSON Content Importer', 'administrator', __FILE__, 'jci_settings_page',plugins_url('/images/icon/icon-16x16.png', __FILE__));
+	add_menu_page('JSON Content Importer', 'JSON Content Importer', 'administrator', __FILE__, 'jci_settings_page',plugins_url('/images/icon-16x16.png', __FILE__));
 
 	//call register settings function
 	add_action( 'admin_init', 'register_mylocsettings' );
