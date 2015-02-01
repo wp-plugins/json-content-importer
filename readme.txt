@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: json,template,engine,template engine,markup,import,import json, importer,content,cache,load,opendata,opendata import,advanced json import,json import,content import,import json to wordpress,json to content,display json
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -25,8 +25,8 @@ The template engine inserts the JSON-data in the template provided by the wordpr
 
 [jsoncontentimporter
   url="http://...json"
-  numberofdisplayeditems="number: how many items of level 1 should be displayed? display all: leave empty"
-  basenode="starting point of datasets, tha base-node in the JSON-Feed where the data is?"
+  numberofdisplayeditems="number: how many items of level 1 should be displayed? display all: leave empty or set -1"
+  basenode="starting point of datasets, tha base-node in the JSON-Feed where the data is"
 ]
 
 Any HTML-Code plus "basenode"-datafields wrapped in "{}"
@@ -41,11 +41,11 @@ shows the first, second and third entry of that array, modified by ifNotEmptyAdd
 
 
 There are some special add-ons for datafields:
-"{street:ifNotEmptyAddRight:,}": If datafield "street" is not empty, add "," right of datafield-value. allowed chars are: "a-zA-Z0-9,;_-:&lt;&gt;/ "
-"{street:ifNotEmptyAdd:,}": same as "ifNotEmptyAddRight"
-"{street:ifNotEmptyAddLeft:,}": If datafield "street" is not empty, add "," left of datafield-value. allowed chars are: "a-zA-Z0-9,;_-:&lt;&gt;/ "
-"{locationname:urlencode}": Insert the php-urlencoded value of the datafield "locationname". Needed when building URLs.
-"{locationname:unique}": only display the first instance of a datafield. Needed when JSON delivers data more than once.
+* "{street:ifNotEmptyAddRight:,}": If datafield "street" is not empty, add "," right of datafield-value. allowed chars are: "a-zA-Z0-9,;_-:&lt;&gt;/ "
+* "{street:ifNotEmptyAdd:,}": same as "ifNotEmptyAddRight"
+* "{street:ifNotEmptyAddLeft:,}": If datafield "street" is not empty, add "," left of datafield-value. allowed chars are: "a-zA-Z0-9,;_-:&lt;&gt;/ "
+* "{locationname:urlencode}": Insert the php-urlencoded value of the datafield "locationname". Needed when building URLs.
+* "{locationname:unique}": only display the first instance of a datafield. Needed when JSON delivers data more than once.
 
 == Installation ==
 
@@ -72,10 +72,21 @@ Create a sample-page and use the wordpress-shortcode "jsoncontentimporter". An e
 The plugins template engine ist focussed on some basic JSON-imports. Other template engines like H2O or stuff like node.js / handlebars.js can process JSON much more powerful - but they come with a much bigger overhead.
 Your options if this plugin does not work:
 * use correct code for this plugin ;-)
+* [try this page to check JSON and to try different shortcode-markups]http://www.kux.de/extra/wordpress/plugins/jsoncontentimporter/json-explorer/je.php
 * if the above is ok, change the JSON-Input 
 * [open ticket at wordPress.org](https://wordpress.org/support/plugin/json-content-importer) 
 
+== Screenshots ==
+
+1. This screen shows the description and settings-page of the "JSON Content Importer"-Plugin 
+2. This screen shows the Wordpress-Editor with some [jsoncontentimporter]-code
+
 == Changelog ==
+
+= 1.0.5 =
+* Added Screenshots 
+* Enhanced "subloop-array", new processing of pure string/numeric-array data (before: only string/numeric-data in an object) 
+* Enhanced FAQs: Added Link to Website for better creating shortcode-markups
 
 = 1.0.4 =
 Bugfixes
