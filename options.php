@@ -81,7 +81,7 @@ function jci_settings_page() {
           </ul>
          <hr>
          <strong>How do I find the proper template for my JSON?</strong>
-         <br><a href="[open ticket at wordPress.org](https://wordpress.org/support/plugin/json-content-importer)" target="_blank">If you're lost: open ticket here</a>
+         <br><a href="https://wordpress.org/support/plugin/json-content-importer" target="_blank">If you're lost: open ticket here</a>
          <p>
           <strong>Example 1:</strong><br>
           <i>
