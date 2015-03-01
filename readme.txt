@@ -4,11 +4,11 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: json,template,engine,template engine,markup,import,import json, importer,content,cache,load,opendata,opendata import,advanced json import,json import,content import,import json to wordpress,json to content,display json
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Plugin to import, cache and display a JSON-Feed. Display is done with wordpress-markups.
+Plugin to import, cache and display a JSON-Feed. Display is done with wordpress-shortcode.
 
 
 == Description ==
@@ -25,17 +25,20 @@ The template engine inserts the JSON-data in the template provided in the wordpr
 [jsoncontentimporter
   url="http://...json"
   numberofdisplayeditems="number: how many items of level 1 should be displayed? display all: leave empty or set -1"
+  urlgettimeout="number: who many seconds for loading url till timeout?"
   basenode="starting point of datasets, the base-node in the JSON-Feed where the data is"
 ]
 Any HTML-Code plus "basenode"-datafields wrapped in "{}"
 {subloop:"basenode_subloop":"number of subloop-datasets to be displayed"}
-Any HTML-Code plus "basenode_subloop"-datafields wrapped in "{}"
+Any HTML-Code plus "basenode_subloop"-datafields wrapped in "{}". If JSON-data is HTML add "html" flag like "{fieldname:html}"
 {/subloop:"basenode_subloop"}
 [/jsoncontentimporter]
 
 * If the subloop is not an object but an array, e.g.:
 "{subloop-array:type:5}{1:ifNotEmptyAddRight:aa&lt;br&gt;bb}{2:ifNotEmptyAddLeft:AA}{3:ifNotEmptyAddRight:BB}{/subloop-array}"
 shows the first, second and third entry of that array, modified by ifNotEmptyAddLeft and ifNotEmptyAddRight (see below).
+
+* New in Version 1.1.2: "HTML-display of JSON-HTML-Data" and the shortcode-parameter "urlgettimeout" for http-timeout
 
 * New in Version 1.1.0: Insert "basenode_subloop" in closing tag of "subloop" / "subloop-array". If there is only one "subloop" / "subloop-array" it's not importaint.
 But if there are two or more its easier for the the template engine to detect and connect opening- and closing-tags when they obvious match.
@@ -53,6 +56,7 @@ Example:
 [jsoncontentimporter
   url="http://...json"
   numberofdisplayeditems="number: how many items of level 1 should be displayed? display all: leave empty or set -1"
+  urlgettimeout="number: who many seconds for loading url till timeout?"
   basenode="starting point of datasets, the base-node in the JSON-Feed where the data is"
 ]
 
@@ -93,7 +97,7 @@ This plugin gives a wp-shortcode for use in a page/blog to import, cache and dis
 Create a sample-page and use the wordpress-shortcode "jsoncontentimporter". An example is given in the plugin-configpage and in the "Description"-Section.
 
 = Who do I find the proper template for my JSON? =
-Check the description. [If you're lost: open ticket at wordPress.org](https://wordpress.org/support/plugin/json-content-importer)
+Check the description. [If you're lost: open ticket at wordPress.org](https://wordpress.org/support/plugin/json-content-importer) Don't forget: [Donate whatever this plugin is worth for you](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=APWXWK3DF2E22)
 
 = What does this plugin NOT do? =
 The plugins template engine ist focussed on some basic JSON-imports. Other template engines like H2O or stuff like node.js / handlebars.js can process JSON much more powerful - but they come with a much bigger overhead.
@@ -109,6 +113,16 @@ Your options if this plugin does not work:
 2. This screen shows the Wordpress-Editor with some [jsoncontentimporter]-code
 
 == Changelog ==
+
+= 1.1.2 =
+* Bugfix: tags like "{aa/aa}" are ok (previous: error)
+* Display JSON-HTML-Data really as HTML. Default: JSON-HTML-Data is displayed not as HTML but as HTML-Text. New in this version: tag-sytax like "{tag:html}" or "{street:html,ifNotEmptyAddRight:extratext}" allows real HTML-display.
+* New parameter in "[jsoncontentimporter]"-shortcode: set http-timeout "urlgettimeout". default is 5 seconds (ueful if source-website of JSON is slow)
+* Logo of plugin: Wordpress-Logo inserted
+* Update of screenshots
+
+= 1.1.1 =
+Bugfixes
 
 = 1.1.0 =
 Completely rewritten template engine for even better JSON-handling:
@@ -144,4 +158,4 @@ Initial release on WordPress.org. Any comments and feature-requests are welcome:
 
 == Upgrade Notice ==
 
-Version 1.1.0 comes with a completely **rewritten JSON-template-engine**: Many users told me, that **more JSON-structures** should be handled and displayed. Here we go...
+In Version 1.1.2 "HTML-display of JSON-HTML-Data" and the shortcode-parameter "urlgettimeout" for http-timeout are added (besides minor buxfixes)
