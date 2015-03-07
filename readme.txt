@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: json,template,engine,template engine,markup,import,import json, importer,content,cache,load,opendata,opendata import,advanced json import,json import,content import,import json to wordpress,json to content,display json
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.1.2
+Stable tag: 1.2.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -27,6 +27,8 @@ The template engine inserts the JSON-data in the template provided in the wordpr
   numberofdisplayeditems="number: how many items of level 1 should be displayed? display all: leave empty or set -1"
   urlgettimeout="number: who many seconds for loading url till timeout?"
   basenode="starting point of datasets, the base-node in the JSON-Feed where the data is"
+  oneofthesewordsmustbein="default empty, if not empty keywords spearated by ','. At least one of these keywords must be in the created text (here: text=code without html-tags)"
+  oneofthesewordsmustbeindepth="default: 1, number:where in the JSON-tree oneofthesewordsmustbein must be?"
 ]
 Any HTML-Code plus "basenode"-datafields wrapped in "{}"
 {subloop:"basenode_subloop":"number of subloop-datasets to be displayed"}
@@ -38,41 +40,23 @@ Any HTML-Code plus "basenode_subloop"-datafields wrapped in "{}". If JSON-data i
 "{subloop-array:type:5}{1:ifNotEmptyAddRight:aa&lt;br&gt;bb}{2:ifNotEmptyAddLeft:AA}{3:ifNotEmptyAddRight:BB}{/subloop-array}"
 shows the first, second and third entry of that array, modified by ifNotEmptyAddLeft and ifNotEmptyAddRight (see below).
 
-* New in Version 1.1.2: "HTML-display of JSON-HTML-Data" and the shortcode-parameter "urlgettimeout" for http-timeout
-
-* New in Version 1.1.0: Insert "basenode_subloop" in closing tag of "subloop" / "subloop-array". If there is only one "subloop" / "subloop-array" it's not importaint.
-But if there are two or more its easier for the the template engine to detect and connect opening- and closing-tags when they obvious match.
+* New in Version 1.2.0: filter & hook and the shortcode-parameter "oneofthesewordsmustbein" and "oneofthesewordsmustbeindepth" are added
 
 * templates like "{subloop-array:AAAA:10}{text}{subloop:AAAA.image:10}{id}{/subloop:AAAA.image}{/subloop-array:AAAA}" are possible:
 one is the recursive usage of "subloop-array" and "subloop".
 the other is "{subloop:AAAA.image:10}" where "AAAA.image" is the path to an object. This is fine for some JSON-data.
 
-
 = Recursive usage of "subloop-array" and "subloop" of wordpress-shortcode =
-If the JSON-Tree is deep, the template has to be deep.
-
-Example:
-
-[jsoncontentimporter
-  url="http://...json"
-  numberofdisplayeditems="number: how many items of level 1 should be displayed? display all: leave empty or set -1"
-  urlgettimeout="number: who many seconds for loading url till timeout?"
-  basenode="starting point of datasets, the base-node in the JSON-Feed where the data is"
-]
-
-Any HTML-Code plus "basenode"-datafields wrapped in "{}"
-{subloop:"basenode_subloop":"number of subloop-datasets to be displayed"}
-Any HTML-Code plus "basenode_subloop"-datafields wrapped in "{}"
-{/subloop:"basenode_subloop"}
-[/jsoncontentimporter]
-
+If the JSON-Tree is deep, the template has to be deep. Then "subloop" and "subloop-array" can be used inside the other.
 
 = Some special add-ons for datafields =
-* "{street:ifNotEmptyAddRight:,}": If datafield "street" is not empty, add "," right of datafield-value. allowed chars are: "a-zA-Z0-9,;_-:&lt;&gt;/ ",
-* "{street:ifNotEmptyAdd:,}": same as "ifNotEmptyAddRight",
-* "{street:ifNotEmptyAddLeft:,}": If datafield "street" is not empty, add "," left of datafield-value. allowed chars are: "a-zA-Z0-9,;_-:&lt;&gt;/ ",
-* "{locationname:urlencode}": Insert the php-urlencoded value of the datafield "locationname". Needed when building URLs.,
-* "{locationname:unique}": only display the first instance of a datafield. Needed when JSON delivers data more than once.
+* "{street:html}": Default-display of a datafield is NOT HTML: "&lt;" etc. are converted to "&amp,lt;". Add "html" to display the HTML-Code as Code.
+* "{street:ifNotEmptyAddRight:,}": If datafield "street" is not empty, add "," right of datafield-value. allowed chars are: "a-zA-Z0-9,;_-:&lt;&gt;/ "
+* "{street:html,ifNotEmptyAddRight:extratext}": you can combine "html" and "ifNotEmptyAdd..." like this
+* "{street:ifNotEmptyAdd:,}": same as "ifNotEmptyAddRight"
+* "{street:ifNotEmptyAddLeft:,}": If datafield "street" is not empty, add "," left of datafield-value. allowed chars are: "a-zA-Z0-9,;_-:&lt;&gt;/ "
+* "{locationname:urlencode}": Insert the php-urlencoded value of the datafield "locationname". Needed when building URLs
+* "{locationname:unique}": only display the first instance of a datafield. Needed when JSON delivers data more than once
 
 
 == Installation ==
@@ -97,15 +81,19 @@ This plugin gives a wp-shortcode for use in a page/blog to import, cache and dis
 Create a sample-page and use the wordpress-shortcode "jsoncontentimporter". An example is given in the plugin-configpage and in the "Description"-Section.
 
 = Who do I find the proper template for my JSON? =
-Check the description. [If you're lost: open ticket at wordPress.org](https://wordpress.org/support/plugin/json-content-importer) Don't forget: [Donate whatever this plugin is worth for you](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=APWXWK3DF2E22)
+Check the description. [If you're lost: open ticket at wordPress.org](https://wordpress.org/support/plugin/json-content-importer) please provide the JSON-code or link to it (either in the posting or in a mail to the plugin author).
+Don't forget: [Donate whatever this plugin is worth for you](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=APWXWK3DF2E22)
 
 = What does this plugin NOT do? =
 The plugins template engine ist focussed on some basic JSON-imports. Other template engines like H2O or stuff like node.js / handlebars.js can process JSON much more powerful - but they come with a much bigger overhead.
 Your options if this plugin does not work:
-
 * use correct code for this plugin ;-)
 * if the above is ok, change the JSON-Input
-* [open ticket at wordPress.org](https://wordpress.org/support/plugin/json-content-importer)
+* [open ticket at wordPress.org](https://wordpress.org/support/plugin/json-content-importer) provide the JSON-code there or an email to the plugin-author.
+
+= Where is ithis plugin from? =
+This plugin is made in munich, bavaria, germany!
+Famous for Oktoberfest, FC Bayern Munich, AllianzArena, DLD, TUM, BMW, Siemens, seas, mountains and much more...
 
 == Screenshots ==
 
@@ -113,6 +101,13 @@ Your options if this plugin does not work:
 2. This screen shows the Wordpress-Editor with some [jsoncontentimporter]-code
 
 == Changelog ==
+
+= 1.2.0 =
+* new shortcode-parameter: "oneofthesewordsmustbein" and "oneofthesewordsmustbeindepth"
+* filter & hook for third party extensions added: hook "json_content_importer_extension" and filter "json_content_importer_result_root"
+* Sourcecode: Classes rearranged
+* minor bugfix: number of items in subloop/subloop-array was sometimes ignored and all was displayed
+* "made in munich" added (see faq)
 
 = 1.1.2 =
 * Bugfix: tags like "{aa/aa}" are ok (previous: error)
@@ -150,7 +145,6 @@ Bugfixes
 = 1.0.3 =
 Enhanced the template engine for better JSON-handling.
 
-
 = 1.0.2 =
 Initial release on WordPress.org. Any comments and feature-requests are welcome: blog@kux.de
 
@@ -158,4 +152,4 @@ Initial release on WordPress.org. Any comments and feature-requests are welcome:
 
 == Upgrade Notice ==
 
-In Version 1.1.2 "HTML-display of JSON-HTML-Data" and the shortcode-parameter "urlgettimeout" for http-timeout are added (besides minor buxfixes)
+In Version 1.2.0 filter & hook and the shortcode-parameter "oneofthesewordsmustbein" and "oneofthesewordsmustbeindepth" are added (besides minor buxfixes)
