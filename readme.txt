@@ -82,6 +82,7 @@ Create a sample-page and use the wordpress-shortcode "jsoncontentimporter". An e
 
 = Who do I find the proper template for my JSON? =
 Check the description. [If you're lost: open ticket at wordPress.org](https://wordpress.org/support/plugin/json-content-importer) please provide the JSON-code or link to it (either in the posting or in a mail to the plugin author).
+
 Don't forget: [Donate whatever this plugin is worth for you](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=APWXWK3DF2E22)
 
 = What does this plugin NOT do? =
@@ -91,7 +92,7 @@ Your options if this plugin does not work:
 * if the above is ok, change the JSON-Input
 * [open ticket at wordPress.org](https://wordpress.org/support/plugin/json-content-importer) provide the JSON-code there or an email to the plugin-author.
 
-= Where is ithis plugin from? =
+= Where is this plugin from? =
 This plugin is made in munich, bavaria, germany!
 Famous for Oktoberfest, FC Bayern Munich, AllianzArena, DLD, TUM, BMW, Siemens, seas, mountains and much more...
 
