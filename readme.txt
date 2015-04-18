@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: json,template,engine,template engine,markup,import,import json, importer,content,cache,load,opendata,opendata import,advanced json import,json import,content import,import json to wordpress,json to content,display json
 Requires at least: 3.0
 Tested up to: 4.1
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -51,6 +51,7 @@ If the JSON-Tree is deep, the template has to be deep. Then "subloop" and "sublo
 
 = Some special add-ons for datafields =
 * "{street:html}": Default-display of a datafield is NOT HTML: "&lt;" etc. are converted to "&amp,lt;". Add "html" to display the HTML-Code as Code.
+* "{street:htmlAndLinefeed2htmlLinefeed}": Same as "{street:html}" plus "\n"-Linefeeds are converted to HTML-Linebreak "<br>"
 * "{street:ifNotEmptyAddRight:,}": If datafield "street" is not empty, add "," right of datafield-value. allowed chars are: "a-zA-Z0-9,;_-:&lt;&gt;/ "
 * "{street:html,ifNotEmptyAddRight:extratext}": you can combine "html" and "ifNotEmptyAdd..." like this
 * "{street:ifNotEmptyAdd:,}": same as "ifNotEmptyAddRight"
@@ -103,6 +104,12 @@ Famous for Oktoberfest, FC Bayern Munich, AllianzArena, DLD, TUM, BMW, Siemens, 
 
 == Changelog ==
 
+= 1.2.1 =
+* new feature "{street:htmlAndLinefeed2htmlLinefeed}": Text-Linefeeds of JSON-data are converted to HTML-Linefeeds
+* Boolean JSON-Values were ignored before this version. Now the text "true" or "False" is displayed
+* Bugfixing Cacher: Timeout-Parameter of cache was not handled right
+* Fixed a bug with JSON-Value containing "$"
+
 = 1.2.0 =
 * new shortcode-parameter: "oneofthesewordsmustbein" and "oneofthesewordsmustbeindepth"
 * filter & hook for third party extensions added: hook "json_content_importer_extension" and filter "json_content_importer_result_root"
@@ -153,4 +160,4 @@ Initial release on WordPress.org. Any comments and feature-requests are welcome:
 
 == Upgrade Notice ==
 
-In Version 1.2.0 filter & hook and the shortcode-parameter "oneofthesewordsmustbein" and "oneofthesewordsmustbeindepth" are added (besides minor buxfixes)
+Version 1.2.1 fixed two bugs (cacher, $) and comes with two new features: handling of boolean-values and linefeeds
