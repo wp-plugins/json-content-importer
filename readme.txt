@@ -3,8 +3,8 @@ Contributors: berkux
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=APWXWK3DF2E22
 Tags: json,template,engine,template engine,markup,import,import json, importer,content,cache,load,opendata,opendata import,advanced json import,json import,content import,import json to wordpress,json to content,display json
 Requires at least: 3.0
-Tested up to: 4.1
-Stable tag: 1.2.1
+Tested up to: 4.2.2
+Stable tag: 1.2.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -39,8 +39,6 @@ Any HTML-Code plus "basenode_subloop"-datafields wrapped in "{}". If JSON-data i
 * If the subloop is not an object but an array, e.g.:
 "{subloop-array:type:5}{1:ifNotEmptyAddRight:aa&lt;br&gt;bb}{2:ifNotEmptyAddLeft:AA}{3:ifNotEmptyAddRight:BB}{/subloop-array}"
 shows the first, second and third entry of that array, modified by ifNotEmptyAddLeft and ifNotEmptyAddRight (see below).
-
-* New in Version 1.2.0: filter & hook and the shortcode-parameter "oneofthesewordsmustbein" and "oneofthesewordsmustbeindepth" are added
 
 * templates like "{subloop-array:AAAA:10}{text}{subloop:AAAA.image:10}{id}{/subloop:AAAA.image}{/subloop-array:AAAA}" are possible:
 one is the recursive usage of "subloop-array" and "subloop".
@@ -104,6 +102,9 @@ Famous for Oktoberfest, FC Bayern Munich, AllianzArena, DLD, TUM, BMW, Siemens, 
 
 == Changelog ==
 
+= 1.2.2 =
+* minor bugfix: JSON-Structures like { "$a": "$b"} can be handled (before: "$" made problems)
+
 = 1.2.1 =
 * new feature "{street:htmlAndLinefeed2htmlLinefeed}": Text-Linefeeds of JSON-data are converted to HTML-Linefeeds
 * Boolean JSON-Values were ignored before this version. Now the text "true" or "False" is displayed
@@ -160,4 +161,4 @@ Initial release on WordPress.org. Any comments and feature-requests are welcome:
 
 == Upgrade Notice ==
 
-Version 1.2.1 fixed two bugs (cacher, $) and comes with two new features: handling of boolean-values and linefeeds
+Version 1.2.2 fixed one bugs ($ in JSON-key-value)
