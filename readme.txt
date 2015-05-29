@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: json,template,engine,template engine,markup,import,import json, importer,content,cache,load,opendata,opendata import,advanced json import,json import,content import,import json to wordpress,json to content,display json
 Requires at least: 3.0
 Tested up to: 4.2.2
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -102,6 +102,9 @@ Famous for Oktoberfest, FC Bayern Munich, AllianzArena, DLD, TUM, BMW, Siemens, 
 
 == Changelog ==
 
+= 1.2.3 =
+* added a donated feature: new shortcode-params "oneofthesewordsmustnotbein", "oneofthesewordsmustnotbeindepth". This is for excluding JSON-data from display: When one of the ","-separated keywords at "oneofthesewordsmustnotbein" is found in the textblock, ignore this textblock
+
 = 1.2.2 =
 * minor bugfix: JSON-Structures like { "$a": "$b"} can be handled (before: "$" made problems)
 
@@ -161,4 +164,4 @@ Initial release on WordPress.org. Any comments and feature-requests are welcome:
 
 == Upgrade Notice ==
 
-Version 1.2.2 fixed one bugs ($ in JSON-key-value)
+Version 1.2.3 added shortcodes "oneofthesewordsmustnotbein", "oneofthesewordsmustnotbeindepth" for excluding textblocks by keywords
