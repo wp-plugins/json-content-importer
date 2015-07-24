@@ -3,8 +3,8 @@ Contributors: berkux
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=APWXWK3DF2E22
 Tags: json,template,engine,template engine,markup,import,import json, importer,content,cache,load,opendata,opendata import,advanced json import,json import,content import,import json to wordpress,json to content,display json
 Requires at least: 3.0
-Tested up to: 4.2.2
-Stable tag: 1.2.4
+Tested up to: 4.2.3
+Stable tag: 1.2.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -101,6 +101,11 @@ Famous for Oktoberfest, FC Bayern Munich, AllianzArena, DLD, TUM, BMW, Siemens, 
 2. This screen shows the Wordpress-Editor with some [jsoncontentimporter]-code
 
 == Changelog ==
+
+= 1.2.5 =
+* Wordpress 4.2.3: check
+* minor bugfix regarding attribute "ifNotEmptyAddRight"
+* new Pluginwebsite: http://json-content-importer.com/
 
 = 1.2.4 =
 * "&amp;" in JSON-Feed-URLs are replaced by "&"
